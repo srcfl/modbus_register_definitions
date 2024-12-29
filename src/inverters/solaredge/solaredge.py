@@ -7,7 +7,7 @@ from ...modbus.register_definition_keys import (
 )
 
 
-huawei_profile = {
+solaredge_profile = {
     ProfileKey.REGISTERS: [
 
     ]
