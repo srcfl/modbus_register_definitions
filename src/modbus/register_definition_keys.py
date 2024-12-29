@@ -45,6 +45,7 @@ class DataTypeKey(str, Enum):
     BITFIELD16 = 'BITFIELD16' # 16-bit bitfield
     BITFIELD32 = 'BITFIELD32' # 32-bit bitfield
     MLD = 'MLD' # Multi-level data / Multi-level Definition ?
+    BYTES = 'BYTES' # Bytes
 
 class EndiannessKey(str, Enum):
     BIG = 'big'
