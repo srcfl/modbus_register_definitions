@@ -41,11 +41,15 @@ class DataTypeKey(str, Enum):
     U32 = 'U32'    # Unsigned 32-bit integer
     I32 = 'I32'    # Signed 32-bit integer
     F32 = 'F32'    # 32-bit floating point
+    U64 = 'U64'    # Unsigned 64-bit integer
+    I64 = 'I64'    # Signed 64-bit integer
     STR = 'STR'    # String
     BITFIELD16 = 'BITFIELD16' # 16-bit bitfield
     BITFIELD32 = 'BITFIELD32' # 32-bit bitfield
     MLD = 'MLD' # Multi-level data / Multi-level Definition ?
     BYTES = 'BYTES' # Bytes
+    ENUM16 = 'ENUM16' # 16-bit enumeration
+    SUNSSF = 'SUNSSF' # SunSpec Scale Factor Field
 
 class EndiannessKey(str, Enum):
     BIG = 'big'
