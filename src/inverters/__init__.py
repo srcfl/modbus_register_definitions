@@ -4,6 +4,8 @@ from .sungrow.sungrow import sungrow_profile
 from .goodwe.goodwe import goodwe_profile
 from .ferroamp.ferroamp import ferroamp_profile
 from .fronius.fronius import fronius_profile
+from .solis.solis import solis_profile
+from .solis.solis_hybrid import solis_hybrid_profile
 
 # Registry of supported inverter profiles
 INVERTER_PROFILES: Dict[str, Dict[str, Any]] = {
@@ -12,5 +14,7 @@ INVERTER_PROFILES: Dict[str, Dict[str, Any]] = {
     'goodwe': goodwe_profile,
     'ferroamp': ferroamp_profile,
     'fronius': fronius_profile,
+    'solis': solis_profile,
+    'solis_hybrid': solis_hybrid_profile,
     # Add more profiles here as they are supported
 }
