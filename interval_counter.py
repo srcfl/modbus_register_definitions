@@ -34,6 +34,11 @@ def find_register_intervals(registers: List[Dict]) -> List[Tuple[int, int]]:
     return intervals
 
 
+def get_profile_intervals(profile: Dict) -> int:
+    """Return the number of intervals needed to read all registers in a profile."""
+    return len(find_register_intervals(profile.get('registers', [])))
+
+
 def analyze_registers():
     POLL_TIME_MS = 200  # Time per interval in milliseconds
     print("Register analysis for each inverter profile:")
