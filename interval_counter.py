@@ -1,6 +1,9 @@
 from src.inverters import INVERTER_PROFILES
 from src.modbus.register_definition_keys import RegistersKey
 from typing import List, Tuple, Dict
+from register_counter import get_profile_register_count
+
+MAX_REGISTERS_PER_READ = 125
 
 
 def find_register_intervals(registers: List[Dict]) -> List[Tuple[int, int]]:
@@ -21,16 +24,33 @@ def find_register_intervals(registers: List[Dict]) -> List[Tuple[int, int]]:
         end = start + reg[RegistersKey.NUM_OF_REGISTERS] - 1
 
         # If this register starts right after the previous interval ends
-        if start <= current_end + 1:
+        # and adding it wouldn't exceed 125 registers
+        if start <= current_end + 1 and (end - current_start + 1) <= MAX_REGISTERS_PER_READ:
             current_end = max(current_end, end)
         else:
-            # Gap found, store the current interval and start a new one
-            intervals.append((current_start, current_end))
+            # If current interval is too large, split it
+            while current_end - current_start + 1 > MAX_REGISTERS_PER_READ:
+                intervals.append(
+                    (current_start, current_start + MAX_REGISTERS_PER_READ - 1))
+                current_start += MAX_REGISTERS_PER_READ
+
+            # Add remaining part of the interval
+            if current_end >= current_start:
+                intervals.append((current_start, current_end))
+
+            # Start new interval
             current_start = start
             current_end = end
 
-    # Add the last interval
-    intervals.append((current_start, current_end))
+    # Handle the last interval
+    while current_end - current_start + 1 > MAX_REGISTERS_PER_READ:
+        intervals.append((current_start, current_start +
+                         MAX_REGISTERS_PER_READ - 1))
+        current_start += MAX_REGISTERS_PER_READ
+
+    if current_end >= current_start:
+        intervals.append((current_start, current_end))
+
     return intervals
 
 
@@ -48,10 +68,12 @@ def analyze_registers():
         registers = profile.get('registers', [])
         intervals = find_register_intervals(registers)
         num_intervals = len(intervals)
+        total_registers = get_profile_register_count(profile)
         total_poll_time_ms = num_intervals * POLL_TIME_MS
         total_poll_time_s = total_poll_time_ms / 1000
 
         print(f"\n{profile_name}:")
+        print(f"Total registers  : {total_registers}")
         print(f"Number of intervals: {num_intervals}")
         print(f"Total polling time: {total_poll_time_s:.1f} seconds")
         print("Register intervals:")
