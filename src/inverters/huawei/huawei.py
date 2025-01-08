@@ -283,7 +283,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Line voltage between phases B and C",
             RegistersKey.SCALE_FACTOR: 0.1,  # Gain is 10
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Grid Voltage CA",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -338,7 +338,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Power grid current/Phase A current",
             RegistersKey.SCALE_FACTOR: 0.001,  # Gain is 1000
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Phase B Current",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -393,7 +393,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Reactive power",
             RegistersKey.SCALE_FACTOR: 0.001,  # Gain is 1000
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Power Factor",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -644,7 +644,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Number of online optimizer devices",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Optimizer Feature Data",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1091,7 +1091,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Energy storage unit 1 serial number",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "ESU1 Total Charge",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1151,7 +1151,7 @@ huawei_profile = {
             4: sleep mode""",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Storage Bus Voltage",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1206,7 +1206,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Energy storage total discharge (Life-cycle accumulation)",
             RegistersKey.SCALE_FACTOR: 0.01,  # Gain is 100
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Storage Current Day Charge",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1426,8 +1426,8 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Energy storage unit 1 battery pack 2 current",
             RegistersKey.SCALE_FACTOR: 0.1,  # Gain is 10
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
-            {
+        },
+        {
             RegistersKey.NAME: "ESU1 Battery Pack2 Total Charge",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
             RegistersKey.START_REGISTER: 38280,
@@ -1481,7 +1481,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Energy storage unit 1 battery pack 3 working status",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "ESU1 Battery Pack3 SOC",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1536,7 +1536,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Energy storage unit 1 battery pack 3 total charge",
             RegistersKey.SCALE_FACTOR: 0.01,  # Gain is 100
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "ESU1 Battery Pack3 Total Discharge",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1591,7 +1591,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Energy storage unit 1 battery pack 2 minimum temperature",
             RegistersKey.SCALE_FACTOR: 0.1,  # Gain is 10
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "ESU1 Battery Pack1 Maximum Temperature",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1646,7 +1646,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Maximum discharging power. Range: [0, Upper threshold], Default: 3500",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Charging Cutoff Capacity",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -1707,7 +1707,7 @@ huawei_profile = {
             RegistersKey.DESCRIPTION: "Charge from grid function. 0: Disable, 1: Enable",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Grid Charge Cutoff SOC",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,

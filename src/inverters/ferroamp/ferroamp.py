@@ -360,7 +360,7 @@ ferroamp_profile = {
             RegistersKey.START_REGISTER: 3124,
             RegistersKey.NUM_OF_REGISTERS: 2,
             RegistersKey.DATA_TYPE: DataTypeKey.F32,
-            RegistersKey.UNIT: "Arms", 
+            RegistersKey.UNIT: "Arms",
             RegistersKey.DESCRIPTION: "Current measured using external current sensors",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.LITTLE

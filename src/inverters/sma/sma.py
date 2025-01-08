@@ -19,7 +19,7 @@ sma_profile = {
             RegistersKey.DESCRIPTION: "Version number of the SMA Modbus profile",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "SUSy ID",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,

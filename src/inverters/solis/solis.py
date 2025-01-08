@@ -1769,7 +1769,7 @@ solis_profile = {
             RegistersKey.DESCRIPTION: "BIT00: Meter is on the load side, BIT01: Meter is on the main grid side, BIT02: 24H Consumption Monitoring(Only get meter data, no control), BIT03-BIT15: Reserved",
             RegistersKey.SCALE_FACTOR: 1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
-        }, 
+        },
         {
             RegistersKey.NAME: "Meter AC voltage A",
             RegistersKey.FUNCTION_CODE: FunctionCodeKey.READ_HOLDING_REGISTERS,
@@ -2448,7 +2448,7 @@ solis_profile = {
             RegistersKey.NUM_OF_REGISTERS: 1,
             RegistersKey.DATA_TYPE: DataTypeKey.U16,
             RegistersKey.UNIT: "V",
-            RegistersKey.DESCRIPTION: "PV string 11 voltage", 
+            RegistersKey.DESCRIPTION: "PV string 11 voltage",
             RegistersKey.SCALE_FACTOR: 0.1,
             RegistersKey.ENDIANNESS: EndiannessKey.BIG,
         },
