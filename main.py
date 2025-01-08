@@ -1,7 +1,7 @@
 from src.utils import decode_jwt_to_json, create_register_values_from_jwt
 from tabulate import tabulate
 
-with open("jwts/sofar.jwt", "r") as file:
+with open("jwts/growatt.jwt", "r") as file:
     jwt_token = file.read().strip()
 
     header, payload = decode_jwt_to_json(jwt_token)
