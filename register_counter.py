@@ -35,16 +35,20 @@ def find_register_intervals(registers: List[Dict]) -> List[Tuple[int, int]]:
 
 
 def analyze_registers():
+    POLL_TIME_MS = 200  # Time per interval in milliseconds
     print("Register analysis for each inverter profile:")
     print("-" * 70)
 
     for profile_name, profile in INVERTER_PROFILES.items():
         registers = profile.get('registers', [])
-        register_count = len(registers)
         intervals = find_register_intervals(registers)
+        num_intervals = len(intervals)
+        total_poll_time_ms = num_intervals * POLL_TIME_MS
+        total_poll_time_s = total_poll_time_ms / 1000
 
         print(f"\n{profile_name}:")
-        print(f"Total registers: {register_count}")
+        print(f"Number of intervals: {num_intervals}")
+        print(f"Total polling time: {total_poll_time_s:.1f} seconds")
         print("Register intervals:")
         for start, end in intervals:
             size = end - start + 1
