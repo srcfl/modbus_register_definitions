@@ -3,6 +3,7 @@ from src.modbus.register_definition_keys import RegistersKey
 from typing import List, Tuple, Dict
 import argparse
 from interval_counter import get_profile_intervals as get_original_intervals
+from tabulate import tabulate
 
 MAX_REGISTERS_PER_READ = 125
 
@@ -39,10 +40,34 @@ def get_optimized_intervals_count(profile: Dict) -> int:
     return len(find_optimized_intervals(profile.get('registers', [])))
 
 
+def print_legend():
+    legend = """
+Legend:
+- Profile: Name of the inverter manufacturer/model
+- Actual Regs: Number of actual registers being read from the inverter
+- Total Regs: Total number of registers covered (including gaps between registers)
+- Original Reads: Number of Modbus register blocks that need to be read individually
+- Optimized Reads: Number of Modbus register blocks after optimization (combining adjacent registers into blocks of 125)
+- Original Time (s): Time taken to read all blocks using original method (assuming 200ms per block)
+- Optimized Time (s): Time taken to read all blocks using optimized method (assuming 200ms per block)
+- Time Saved (s): Difference between original and optimized read times
+
+Note: All timing calculations assume a hypothetical read time of 200ms per Modbus register block. 
+      Actual read times may vary depending on network conditions and inverter response times.
+"""
+    print(legend)
+
+
 def analyze_optimized_intervals(show_intervals: bool = False):
-    POLL_TIME_MS = 200  # Time per interval in milliseconds
-    print("Register analysis (reading in blocks of 125):")
+    POLL_TIME_MS = 200  # Time per block in milliseconds
+    print("Register Block Analysis:")
+    print("Comparing read timings between original register blocks (as defined) vs")
+    print("optimized blocks (combining adjacent registers into blocks of 125) to reduce total reads")
     print("-" * 70)
+
+    table_data = []
+    headers = ["Profile", "Actual Regs", "Total Regs", "Original Reads",
+               "Optimized Reads", "Original Time (s)", "Optimized Time (s)", "Time Saved (s)"]
 
     for profile_name, profile in INVERTER_PROFILES.items():
         registers = profile.get('registers', [])
@@ -62,21 +87,34 @@ def analyze_optimized_intervals(show_intervals: bool = False):
         actual_registers = sum(reg[RegistersKey.NUM_OF_REGISTERS]
                                for reg in registers)
 
-        print(f"\n{profile_name}:")
-        print(f"Actual registers : {actual_registers}")
-        print(f"Total registers : {total_registers} (including gaps)")
-        print(f"Original reads  : {num_original_intervals}")
-        print(f"Optimized reads : {num_optimized_intervals}")
-        print(f"Original time   : {original_poll_time:.1f} seconds")
-        print(f"Optimized time  : {optimized_poll_time:.1f} seconds")
-        print(
-            f"Time saved      : {original_poll_time - optimized_poll_time:.1f} seconds")
+        # Add row to table data
+        table_data.append([
+            profile_name,
+            actual_registers,
+            total_registers,
+            num_original_intervals,
+            num_optimized_intervals,
+            f"{original_poll_time:.1f}",
+            f"{optimized_poll_time:.1f}",
+            f"{original_poll_time - optimized_poll_time:.1f}"
+        ])
 
         if show_intervals:
-            print("\nRead intervals:")
-            for start, end in optimized_intervals:
-                size = end - start + 1
-                print(f"  {start:>6} - {end:<6} ({size:>4} registers)")
+            print(f"\n{profile_name} register blocks:")
+            intervals_data = [(start, end, end - start + 1)
+                              for start, end in optimized_intervals]
+            print(tabulate(intervals_data,
+                           headers=["Start", "End", "Size"],
+                           tablefmt="grid",
+                           numalign="right"))
+            print()
+
+    # Print the main results table
+    print("\n" + tabulate(table_data, headers=headers,
+          tablefmt="grid", numalign="right"))
+
+    # Print the legend
+    print_legend()
 
 
 if __name__ == "__main__":
